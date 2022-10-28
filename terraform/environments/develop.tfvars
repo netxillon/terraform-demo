@@ -1,5 +1,5 @@
 # Project name
-org = "cyrus" 
+org = "helix" 
 
 # Project name
 project = "data_lake" 
