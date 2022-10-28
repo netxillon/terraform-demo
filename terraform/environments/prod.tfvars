@@ -1,11 +1,11 @@
 # Project name
-org = "helix" 
+org = "cyrus" 
 
 # Project name
 project = "data_lake" 
 
 # Environment name to be prefixed in resource names
-environment = "dev" 
+environment = "prod" 
 
 # AWS region name to be used for resource provisioning
 region = "us-east-2"  
