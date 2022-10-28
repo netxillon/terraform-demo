@@ -27,12 +27,12 @@ resource "aws_vpc_dhcp_options" "dhcp_options" {
 }
 
 resource "aws_vpc_dhcp_options_association" "dns_resolver" {
-  vpc_id          = aws_vpc.demo_vpc.id
+  vpc_id          = aws_vpc.apps_vpc.id
   dhcp_options_id = aws_vpc_dhcp_options.dhcp_options.id
 }
 
 resource "aws_subnet" "apps_subnet" {
-  vpc_id            = aws_vpc.demo_vpc.id
+  vpc_id            = aws_vpc.apps_vpc.id
   cidr_block        = element(var.apps_subnets, count.index)
   availability_zone = element(var.public_availability_zones, count.index)
   count             = length(var.public_subnets_workloads)
