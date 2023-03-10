@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "s3_demo2_bucket" {
 
 locals {
     buckets = [aws_s3_bucket.s3_demo1_bucket, aws_s3_bucket.s3_demo2_bucket]
-}
+    }
 
 resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
   for_each = {for idx, bucket in local.buckets: idx => bucket}
@@ -18,6 +18,7 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
 
 
   
