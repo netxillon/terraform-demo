@@ -14,7 +14,7 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
+resource "aws_s3_bucket_public_access_block" "s3_bucket2_public_access_block" {
   bucket                  = aws_s3_bucket.s3_demo2_bucket.id
   block_public_acls       = true
   block_public_policy     = true
