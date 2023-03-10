@@ -19,3 +19,9 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
   restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.s3_demo1_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
