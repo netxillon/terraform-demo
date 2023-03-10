@@ -21,3 +21,5 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket1_public_access_block" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
+  
