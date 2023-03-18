@@ -20,8 +20,20 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example" {
-  bucket = aws_s3_bucket.s3_demo1_bucket.id
+  for_each = {for idx, bucket in local.buckets: idx => bucket}
+  bucket                  = each.value.id
   versioning_configuration {
     status = "Enabled"
   }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
+  for_each = {for idx, bucket in local.buckets: idx => bucket}
+  bucket                  = each.value.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "AES256"
+      }
+}
 }
