@@ -82,7 +82,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     id     = "clean-athean-spills" #lion-dev-data-zone
     # delete if objects are older than noncurrent_days and older than n-newer_noncurrent_versions
     noncurrent_version_expiration {
-      noncurrent_days           = "${var.dtmp_clean_days}"
+      noncurrent_days           = "${var.tmp_clean_days}"
       newer_noncurrent_versions = 1
     }
   }
