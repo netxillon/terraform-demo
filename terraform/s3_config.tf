@@ -37,6 +37,6 @@ variable "s3_encrypt" {
 resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
   bucket = aws_s3_bucket.s3_demo1_bucket.id
 
-  rule = var.s3_encrypt
+  rule = {var.s3_encrypt}
   
 }
