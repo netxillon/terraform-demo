@@ -32,3 +32,29 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type = string
   description = "AWS Secret Access key"
 }
+## Define S3 life Cycle Policy variables
+
+variable "expiration_days" {
+  type = number
+  description = "This defines the days after which the object will be deleted"
+}
+
+variable "tmp_clean_days" {
+  type = number
+  description = "This defines the days after which the object will be deleted"
+}
+
+variable "days_to_infreq" {
+  type = number
+  description = "This defines the number of days after which object will be moved to STANDARD_IA"
+}
+
+variable "days_to_glacier" {
+  type = string
+  description = "This defines the number of days after which object will be moved to GLACIER"
+}
+
+variable "days_to_deep_achive" {
+  type = string
+  description = "This defines the number of days after which object will be moved to DEEP ARCHIVE"
+}
