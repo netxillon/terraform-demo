@@ -48,14 +48,14 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     }
   }  
 
-}*/
+}
 
 resource "aws_s3_bucket_lifecycle_configuration" "aera_cleanup" {
   bucket = aws_s3_bucket.s3_demo1_bucket.bucket
   
   rule {
     filter {
-        prefix = "athena-spill/"
+        prefix = "/"
     }
     status = "Enabled"
     id     = "clean-athean-spills" #lion-athena-dev-spill
@@ -65,7 +65,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "aera_cleanup" {
       newer_noncurrent_versions = 1
     }
   }
-}
+}*/
 
 resource "aws_s3_bucket_intelligent_tiering_configuration" "example-filtered" {
   for_each = {for idx, bucket in local.buckets: idx => bucket}
