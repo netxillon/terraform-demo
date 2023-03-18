@@ -64,12 +64,12 @@ resource "aws_s3_bucket" "bucket-name" {
     for_each = local.lifecycle_rules
    
     content {
-      id      = lifecycle_rule.each.id
-      enabled = lifecycle_rule.each.enabled
-      prefix  = lifecycle_rule.each.prefix
+      id      = lifecycle_rule.each.value.id
+      enabled = lifecycle_rule.each.value.enabled
+      prefix  = lifecycle_rule.each.value.prefix
 
       expiration {
-        days = lifecycle_rule.each.expiration.days
+        days = lifecycle_rule.each.expiration.value.days
       }
     }
   }
