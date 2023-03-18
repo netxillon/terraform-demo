@@ -32,7 +32,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
   }
 }
 
-resource "aws_s3_bucket_lifecycle_configuration" "athena_cleanup" {
+/*resource "aws_s3_bucket_lifecycle_configuration" "athena_cleanup" {
   bucket = aws_s3_bucket.s3_demo1_bucket.bucket
   
   rule {
@@ -46,9 +46,9 @@ resource "aws_s3_bucket_lifecycle_configuration" "athena_cleanup" {
       noncurrent_days           = "${var.tmp_clean_days}"
       newer_noncurrent_versions = 1
     }
-  }
-  
-}
+  }  
+
+}*?
 
 resource "aws_s3_bucket_lifecycle_configuration" "aera_cleanup" {
   bucket = aws_s3_bucket.s3_demo1_bucket.bucket
