@@ -27,7 +27,7 @@
 variable "s3_encrypt" {
   type = list
   default = [{
-    apply_server_side_encryption_by_default [{
+    apply_server_side_encryption_by_default = [{
       sse_algorithm     = "AES256"
       }]
   }]
