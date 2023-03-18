@@ -77,11 +77,7 @@ resource "aws_s3_bucket_intelligent_tiering_configuration" "example-filtered" {
 
   filter {
     prefix = "/"
-
-    /*tags = {
-      priority = "high"
-      class    = "blue"
-    }*/
+    
   }
 
   tiering {
