@@ -48,7 +48,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     }
   }  
 
-}*?
+}*/
 
 resource "aws_s3_bucket_lifecycle_configuration" "aera_cleanup" {
   bucket = aws_s3_bucket.s3_demo1_bucket.bucket
