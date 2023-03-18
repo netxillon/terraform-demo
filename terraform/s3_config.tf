@@ -47,11 +47,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
 resource "aws_s3_bucket_lifecycle_configuration" "this" {
   bucket = aws_s3_bucket.s3_demo1_bucket.bucket
   rule {
-    filter {
-        and {
-        prefix = "logs/"
-        }
-    } # workaround error
+    filter {} # workaround error
     status = "Enabled"
     id     = "logs-rotation"
     # delete if objects are older than noncurrent_days and older than n-newer_noncurrent_versions
@@ -64,5 +60,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
       storage_class             = "STANDARD_IA"
       noncurrent_days           = 30
     }
+    
   }
 }
