@@ -25,7 +25,7 @@
 }*/
 
 variable "s3_encrypt" {
-  type = "list"
+  type = list
   default = []
 }
 
