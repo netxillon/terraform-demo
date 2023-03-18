@@ -32,12 +32,3 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type = string
   description = "AWS Secret Access key"
 }
-
-variable "s3_encrypt" {
-  type = list
-  default = [{
-    apply_server_side_encryption_by_default = [{
-      sse_algorithm     = "AES256"
-      }]
-  }]
-}
