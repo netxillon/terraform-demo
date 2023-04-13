@@ -3,7 +3,7 @@ name: 'Terraform Configuration Drift Detection'
 on:
   workflow_dispatch: 
   schedule:
-    - cron: '*/5 * * * *' # runs nightly at 3:41 am
+    - cron: '5 5 12 1 1' # runs
 
 env:
 
@@ -60,7 +60,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tfplan
-          path: tfplan
+          path: "${{ env.working_directory }}"/tfplan
+        
 
       # Create string output of Terraform Plan
       - name: Create String Output
