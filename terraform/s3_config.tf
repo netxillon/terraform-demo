@@ -82,11 +82,11 @@ resource "aws_s3_bucket_intelligent_tiering_configuration" "example-filtered" {
 
   tiering {
     access_tier = "DEEP_ARCHIVE_ACCESS"
-    days        = 180
+    days        = "${var.days_to_deep_achive}"
   }
   tiering {
     access_tier = "ARCHIVE_ACCESS"
-    days        = 125
+    days        = "${var.days_to_glacier}"
   }
   
 }
