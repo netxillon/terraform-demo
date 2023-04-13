@@ -32,33 +32,29 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type = string
   description = "AWS Secret Access key"
 }
+## Define S3 life Cycle Policy variables
 
-# Define variables for vpc
+variable "expiration_days" {
+  type = number
+  description = "This defines the days after which the object will be deleted"
+}
 
-variable "demo_vpc" {
+variable "tmp_clean_days" {
+  type = number
+  description = "This defines the days after which the object will be deleted"
+}
+
+variable "days_to_infreq" {
+  type = number
+  description = "This defines the number of days after which object will be moved to STANDARD_IA"
+}
+
+variable "days_to_glacier" {
   type = string
-  description = "CIDR block to be used for VPC, e.g. 10.5.0.0/16"
+  description = "This defines the number of days after which object will be moved to GLACIER"
 }
 
-variable "public_availability_zones" {
-  description = "a comma-separated list of availability zones, defaults to all AZ of the regions"
-  default     = ["us-east-2a", "us-east-2b"]
+variable "days_to_deep_achive" {
+  type = string
+  description = "This defines the number of days after which object will be moved to DEEP ARCHIVE"
 }
-
-variable "domain_name" {
-  description = "Domain name"
-}
-
-variable "domain_name_servers" {
-  description = "List of DNS Servers"
-}
-
-variable "ntp_servers" {
-  description = "List of NTP Servers"
-}
-
-variable "apps_subnets" {
-  type = list(string)
-  description = "List of subnets for the Redshift Cluster"
-}
-

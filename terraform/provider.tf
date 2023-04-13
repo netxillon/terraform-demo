@@ -17,8 +17,8 @@ provider "aws" {
       Project     = "${var.project}"
       Environment = "${var.environment}"
       CreatedBy   = "Terraform"
-      Contact = "DevOpsTeam"
-      Component = "Base Infra"
+      Contact = "gurmukh singh"
+      Component = "Base Platform"
     }
   }
 }
