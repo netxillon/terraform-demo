@@ -12,7 +12,7 @@ env:
   TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   TF_VAR_AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
-  terraform_version: "1.2.5"
+  terraform_version: "1.4.5"
   working_directory: terraform
   target_environment: dev
 
