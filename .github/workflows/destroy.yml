@@ -7,7 +7,7 @@ on:
         description: 'Environment to Destroy'
         type: environment
         required: true 
-        default: 'develop'
+        default: 'qa'
       warning:
         type: boolean
         description: ARE YOU SURE you want to destroy all AWS resources for this project, in this environment? This operation cannot be reversed. 
