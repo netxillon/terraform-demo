@@ -32,6 +32,21 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type = string
   description = "AWS Secret Access key"
 }
+# VPC
+variable "main_vpc" {
+  type = string
+  description = "CIDR block to be used for VPC, e.g. 10.5.0.0/16"
+}
+
+variable "apps_subnets" {
+  type = list(string)
+  description = "List of subnets for the workloads"
+}
+
+variable "availability_zones" {
+  description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
+  default     = ["us-east-2a", "us-east-2b"]
+}
 
 variable "domain_name" {
   description = "Domain name"
