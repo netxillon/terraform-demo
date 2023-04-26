@@ -23,7 +23,7 @@ resource "aws_route" "route_public_traffic" {
 resource "aws_route" "route_test_vpc" {
   for_each = {for idx, route in var.data_vpcs: idx => route}
   route_table_id            = aws_default_route_table.default_route_table_public_vpc.id
-  destination_cidr_block    = each.value.id
+  destination_cidr_block    = each.value
   transit_gateway_id        = aws_internet_gateway.gw.id
   depends_on                = [aws_default_route_table.default_route_table_public_vpc]
 }
