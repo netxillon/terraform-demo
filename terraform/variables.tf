@@ -32,6 +32,19 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type = string
   description = "AWS Secret Access key"
 }
+
+variable "domain_name" {
+  description = "Domain name"
+}
+
+variable "domain_name_servers" {
+  description = "List of DNS Servers"
+}
+
+variable "ntp_servers" {
+  description = "List of NTP Servers"
+}
+
 ## Define S3 life Cycle Policy variables
 
 variable "expiration_days" {
