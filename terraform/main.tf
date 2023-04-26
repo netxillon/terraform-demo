@@ -8,6 +8,14 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "main"
+  }
+}
+
 resource "aws_vpc_dhcp_options" "dhcp_options" {
   domain_name          = var.domain_name
   domain_name_servers  = var.domain_name_servers
