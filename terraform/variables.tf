@@ -58,3 +58,8 @@ variable "days_to_deep_achive" {
   type = string
   description = "This defines the number of days after which object will be moved to DEEP ARCHIVE"
 }
+
+variable "data_vpcs" {
+    description = "The IP of dbt servers"
+    type        = list(string)
+}

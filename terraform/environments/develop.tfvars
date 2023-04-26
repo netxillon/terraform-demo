@@ -25,3 +25,6 @@ tmp_clean_days = 7
 days_to_infreq = 90
 days_to_glacier = 180
 days_to_deep_achive = 365
+
+# VPCs where our services reside
+data_vpcs  = ["10.155.88.0/21", "10.155.96.0/21"]
