@@ -1,6 +1,6 @@
 
 resource "aws_default_route_table" "default_route_table_public_vpc" {
-  default_route_table_id = aws_vpc.main_vpc.default_route_table_id
+  default_route_table_id = aws_vpc.main.default_route_table_id
 
   tags = {
     Name = "${var.org}-${var.project}-public"
