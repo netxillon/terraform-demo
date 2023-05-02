@@ -45,7 +45,7 @@ variable "apps_subnets" {
 
 variable "availability_zones" {
   description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
-  default     = ["us-east-2a", "us-east-2b"]
+  default     = ["ap-southeast-2a", "ap-southeast-2b"]
 }
 
 variable "domain_name" {

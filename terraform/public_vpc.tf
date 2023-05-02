@@ -1,10 +1,18 @@
-resource "aws_vpc" "private_vpc" {
-  cidr_block           = var.private_vpc
+resource "aws_vpc" "public_main" {
+  cidr_block           = var.public_main
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
     Name = "${var.org}-${var.project}-vpc-${var.environment}"
+  }
+}
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "main"
   }
 }
 
@@ -19,29 +27,20 @@ resource "aws_vpc_dhcp_options" "dhcp_options" {
 }
 
 resource "aws_vpc_dhcp_options_association" "dns_resolver" {
-  vpc_id          = aws_vpc.private_vpc.id
+  vpc_id          = aws_vpc.public_main.id
   dhcp_options_id = aws_vpc_dhcp_options.dhcp_options.id
 }
 
 resource "aws_subnet" "tgw_subnets" {
-  vpc_id            = aws_vpc.private_vpc.id
-  cidr_block        = element(var.private_subnets_tgw, count.index)
+  vpc_id            = aws_vpc.public_main.id
+  cidr_block        = element(var.public_subnets_tgw, count.index)
   availability_zone = element(var.availability_zones, count.index)
-  count             = length(var.private_subnets_tgw
+  count             = length(var.public_subnets_tgw)
 
   tags = {
     Name = "${var.org}-${var.project}-public-tgw-dedicated${count.index}"
   }
 }
 
-resource "aws_subnet" "workload_subnets" {
-  vpc_id            = aws_vpc.private_vpc.id
-  cidr_block        = element(var.apps_subnets, count.index)
-  availability_zone = element(var.availability_zones, count.index)
-  count             = length(var.apps_subnets)
 
-  tags = {
-    Name = "${var.org}-${var.project}-${var.environment}-apps${count.index}"
-  }
-}
 

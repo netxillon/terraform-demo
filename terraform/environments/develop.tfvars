@@ -13,7 +13,7 @@ region = "us-east-2"
 # VPC Internet Facing
 main_vpc = "20.0.0.0/16"
 apps_subnets  = ["20.0.1.0/24", "20.0.2.0/24"]
-availability_zones = ["us-east-2a", "us-east-2b"]
+availability_zones = ["ap-southeast-2a", "ap-southeast-2b"]
 
 # DHCP Uptions for VPC
 domain_name          = "example.com"
