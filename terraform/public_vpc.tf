@@ -9,7 +9,7 @@ resource "aws_vpc" "public_vpc" {
 }
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.public_vpc.id
 
   tags = {
     Name = "main"
@@ -31,7 +31,7 @@ resource "aws_vpc_dhcp_options_association" "public_dns_resolver" {
   dhcp_options_id = aws_vpc_dhcp_options.public_dhcp_options.id
 }
 
-resource "aws_subnet" "tgw_public_subnets" {
+resource "aws_subnet" "public_subnets_tgw" {
   vpc_id            = aws_vpc.public_vpc.id
   cidr_block        = element(var.public_subnets_tgw, count.index)
   availability_zone = element(var.public_availability_zones, count.index)
