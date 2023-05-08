@@ -1,4 +1,4 @@
-resource "aws_vpc" "public_main" {
+resource "aws_vpc" "public_vpc" {
   cidr_block           = var.public_vpc
   enable_dns_support   = true
   enable_dns_hostnames = true

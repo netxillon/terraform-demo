@@ -33,6 +33,19 @@ variable "AWS_SECRET_ACCESS_KEY" {
   description = "AWS Secret Access key"
 }
 
+# DNS, NTP etc
+variable "domain_name" {
+  description = "Domain name"
+}
+
+variable "domain_name_servers" {
+  description = "List of DNS Servers"
+}
+
+variable "ntp_servers" {
+  description = "List of NTP Servers"
+}
+
 ## Private VPC
 variable "private_vpc" {
   type = string
