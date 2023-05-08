@@ -32,32 +32,52 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type = string
   description = "AWS Secret Access key"
 }
-# VPC
-variable "main_vpc" {
+
+## Private VPC
+variable "private_vpc" {
   type = string
   description = "CIDR block to be used for VPC, e.g. 10.5.0.0/16"
 }
 
-variable "apps_subnets" {
+variable "private_availability_zones" {
+  description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
+  default     = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"]
+}
+
+variable "private_subnets_tgw" {
   type = list(string)
   description = "List of subnets for the workloads"
 }
 
-variable "availability_zones" {
+variable "private_subnets_workload" {
+  type = list(string)
+  description = "List of subnets for the workloads"
+}
+
+variable "private_subnets_redshift" {
+  type = list(string)
+  description = "List of subnets for the workloads"
+}
+
+#Public VPC
+variable "public_vpc" {
+  type = string
+  description = "CIDR block to be used for VPC, e.g. 10.5.0.0/16"
+}
+
+variable "public_availability_zones" {
   description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
-  default     = ["ap-southeast-2a", "ap-southeast-2b"]
+  default     = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"]
 }
 
-variable "domain_name" {
-  description = "Domain name"
+variable "public_subnets_tgw" {
+  type = list(string)
+  description = "List of subnets for the workloads"
 }
 
-variable "domain_name_servers" {
-  description = "List of DNS Servers"
-}
-
-variable "ntp_servers" {
-  description = "List of NTP Servers"
+variable "public_subnets_workload" {
+  type = list(string)
+  description = "List of subnets for the workloads"
 }
 
 ## Define S3 life Cycle Policy variables
@@ -87,7 +107,3 @@ variable "days_to_deep_achive" {
   description = "This defines the number of days after which object will be moved to DEEP ARCHIVE"
 }
 
-variable "data_vpcs" {
-    description = "The IP of dbt servers"
-    type        = list(string)
-}

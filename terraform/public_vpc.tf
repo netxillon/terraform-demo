@@ -1,5 +1,5 @@
 resource "aws_vpc" "public_main" {
-  cidr_block           = var.public_main
+  cidr_block           = var.public_vpc
   enable_dns_support   = true
   enable_dns_hostnames = true
 
@@ -27,14 +27,14 @@ resource "aws_vpc_dhcp_options" "dhcp_options" {
 }
 
 resource "aws_vpc_dhcp_options_association" "dns_resolver" {
-  vpc_id          = aws_vpc.public_main.id
+  vpc_id          = aws_vpc.public_vpc.id
   dhcp_options_id = aws_vpc_dhcp_options.dhcp_options.id
 }
 
-resource "aws_subnet" "tgw_subnets" {
-  vpc_id            = aws_vpc.public_main.id
+resource "aws_subnet" "tgw_public_subnets" {
+  vpc_id            = aws_vpc.public_vpc.id
   cidr_block        = element(var.public_subnets_tgw, count.index)
-  availability_zone = element(var.availability_zones, count.index)
+  availability_zone = element(var.public_availability_zones, count.index)
   count             = length(var.public_subnets_tgw)
 
   tags = {
