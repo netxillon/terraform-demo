@@ -27,7 +27,7 @@ resource "aws_subnet" "tgw_subnets" {
   vpc_id            = aws_vpc.private_vpc.id
   cidr_block        = element(var.private_subnets_tgw, count.index)
   availability_zone = element(var.availability_zones, count.index)
-  count             = length(var.private_subnets_tgw
+  count             = length(var.private_subnets_tgw)
 
   tags = {
     Name = "${var.org}-${var.project}-public-tgw-dedicated${count.index}"
