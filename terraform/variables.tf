@@ -107,3 +107,24 @@ variable "days_to_deep_achive" {
   description = "This defines the number of days after which object will be moved to DEEP ARCHIVE"
 }
 
+#Redshift Cluster
+
+variable "CLUSTER_MASTER_USERNAME" {
+  description = "Redshift Cluster master db username"
+}
+
+variable "CLUSTER_MASTER_PASSWORD" {
+  description = "Redshift Cluster master db password"
+}
+
+variable "cluster_node_type" {
+  description = "Redshift Cluster Node Type"
+}
+
+variable "cluster_number_of_nodes" {
+  description = "Redshift Cluster Number of Node"
+}
+
+variable "automated_snapshot_retention_period" {
+  description = "Redshift Cluster automated snapshot retention period"
+}
