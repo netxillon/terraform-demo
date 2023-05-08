@@ -23,10 +23,10 @@ resource "aws_vpc_dhcp_options_association" "dns_resolver" {
   dhcp_options_id = aws_vpc_dhcp_options.dhcp_options.id
 }
 
-resource "aws_subnet" "tgw_subnets" {
+resource "aws_subnet" "private_subnets_tgw" {
   vpc_id            = aws_vpc.private_vpc.id
   cidr_block        = element(var.private_subnets_tgw, count.index)
-  availability_zone = element(var.availability_zones, count.index)
+  availability_zone = element(var.private_availability_zones, count.index)
   count             = length(var.private_subnets_tgw)
 
   tags = {
@@ -34,14 +34,27 @@ resource "aws_subnet" "tgw_subnets" {
   }
 }
 
-resource "aws_subnet" "workload_subnets" {
+resource "aws_subnet" "private_subnets_redshift" {
   vpc_id            = aws_vpc.private_vpc.id
-  cidr_block        = element(var.apps_subnets, count.index)
-  availability_zone = element(var.availability_zones, count.index)
-  count             = length(var.apps_subnets)
+  cidr_block        = element(var.private_subnets_redshift, count.index)
+  availability_zone = element(var.private_availability_zones, count.index)
+  count             = length(var.private_subnets_redshift)
 
   tags = {
-    Name = "${var.org}-${var.project}-${var.environment}-apps${count.index}"
+    Name = "${var.org}-${var.project}-${var.environment}-redshift${count.index}"
   }
 }
+
+resource "aws_subnet" "private_subnets_workload" {
+  vpc_id            = aws_vpc.private_vpc.id
+  cidr_block        = element(var.private_subnets_workload, count.index)
+  availability_zone = element(var.private_availability_zones, count.index)
+  count             = length(var.private_subnets_workload)
+
+  tags = {
+    Name = "${var.org}-${var.project}-${var.environment}-workload${count.index}"
+  }
+}
+
+
 
