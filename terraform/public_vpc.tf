@@ -42,5 +42,16 @@ resource "aws_subnet" "public_subnets_tgw" {
   }
 }
 
+resource "aws_subnet" "public_subnets_workload" {
+  vpc_id            = aws_vpc.public_vpc.id
+  cidr_block        = element(var.public_subnets_workload, count.index)
+  availability_zone = element(var.public_availability_zones, count.index)
+  count             = length(var.public_subnets_workload)
+
+  tags = {
+    Name = "${var.org}-${var.project}-public-tgw-dedicated${count.index}"
+  }
+}
+
 
 

@@ -7,7 +7,7 @@ resource "aws_ec2_transit_gateway" "tgw" {
 }
 
 resource "aws_ec2_transit_gateway_vpc_attachment" "private_subnets_tgw" {
-  subnet_ids         = [aws_subnet.private_subnets_tgw.id]
+  subnet_ids         = "${aws_subnet.private_subnets_tgw.*.id}"
   transit_gateway_id = aws_ec2_transit_gateway.tgw.id
   vpc_id             = aws_vpc.private_vpc.id
 
@@ -18,7 +18,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "private_subnets_tgw" {
 
 
 resource "aws_ec2_transit_gateway_vpc_attachment" "public_subnets_tgw" {
-  subnet_ids         = [aws_subnet.public_subnets_tgw.id]
+  subnet_ids         = "${aws_subnet.public_subnets_tgw.*.id}"
   transit_gateway_id = aws_ec2_transit_gateway.tgw.id
   vpc_id             = aws_vpc.public_vpc.id
 
