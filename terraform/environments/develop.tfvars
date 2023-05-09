@@ -29,8 +29,8 @@ domain_name_servers  = ["AmazonProvidedDNS"]
 ntp_servers          = ["169.254.169.123"]
 
 expiration_days = 10950
-tmp_clean_days = 7
-days_to_infreq = 90
+tmp_clean_days = 75
+days_to_infreq = 40
 days_to_glacier = 180
 days_to_deep_achive = 365
 
