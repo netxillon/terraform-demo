@@ -80,7 +80,7 @@ variable "public_vpc" {
 
 variable "public_availability_zones" {
   description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
-  default     = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"]
+  default     = ["ap-southeast-2a", "ap-southeast-2b"]
 }
 
 variable "public_subnets_tgw" {
