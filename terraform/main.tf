@@ -4,7 +4,7 @@ resource "aws_vpc" "private_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "${var.org}-${var.project}-vpc-${var.environment}"
+    Name = "${var.org}-${var.project}-vpc-${var.environment}-private"
   }
 }
 
