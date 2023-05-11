@@ -131,7 +131,7 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
 resource "aws_redshift_snapshot_schedule" "sunday" {
   identifier = "${var.org}-data-${var.environment}-sunday-schedule"
   definitions = [
-    "rate(30 23 7)",
+    "cron(30 23 7)",
   ]
 }
 
