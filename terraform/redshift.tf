@@ -98,6 +98,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   master_username                       = "${var.CLUSTER_MASTER_USERNAME}"
   master_password                       = "${var.CLUSTER_MASTER_PASSWORD}"
   publicly_accessible			              = false
+  enhanced_vpc_routing                  = true
   final_snapshot_identifier             = "${var.org}-data-platform-${var.environment}-final-snapshot"
   skip_final_snapshot                   = false
   automated_snapshot_retention_period   = "${var.automated_snapshot_retention_period}"
@@ -126,3 +127,22 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
 */
+
+resource "aws_redshift_snapshot_schedule" "sunday" {
+  identifier = "${var.org}-data-${var.environment}-sunday-schedule"
+  definitions = [
+    "cron(30 23 * * 6)",
+  ]
+}
+
+resource "aws_redshift_snapshot_schedule" "midweek" {
+  identifier = "${var.org}-data-${var.environment}-midweek-schedule"
+  definitions = [
+    "cron(30 23 * * 3)",
+  ]
+}
+
+resource "aws_redshift_snapshot_schedule_association" "default" {
+  cluster_identifier  = aws_redshift_cluster.redshift_cluster.id
+  schedule_identifier = aws_redshift_snapshot_schedule.sunday.id
+}
