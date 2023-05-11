@@ -88,7 +88,7 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
   }
 }
 
-/*
+
 resource "aws_redshift_cluster" "redshift_cluster" {
   cluster_identifier                    = "${var.org}-data-platform-${var.environment}"
   node_type                             = "${var.cluster_node_type}"
@@ -104,4 +104,3 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   vpc_security_group_ids                = ["${aws_security_group.dbt_public_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
-*/
