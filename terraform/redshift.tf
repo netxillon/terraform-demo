@@ -128,8 +128,8 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
 }
 */
 
-resource "aws_redshift_snapshot_schedule" "21hours" {
-  identifier = "${var.org}-data-${var.environment}-sunday-schedule"
+resource "aws_redshift_snapshot_schedule" "default" {
+  identifier = "${var.org}-data-${var.environment}-at21hours-schedule"
   definitions = [
     "rate(21 hours)",
   ]
@@ -137,5 +137,5 @@ resource "aws_redshift_snapshot_schedule" "21hours" {
 
 resource "aws_redshift_snapshot_schedule_association" "default" {
   cluster_identifier  = aws_redshift_cluster.redshift_cluster[0].id
-  schedule_identifier = aws_redshift_snapshot_schedule.sunday.id
+  schedule_identifier = aws_redshift_snapshot_schedule.default.id
 }
