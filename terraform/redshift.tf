@@ -143,6 +143,6 @@ resource "aws_redshift_snapshot_schedule" "midweek" {
 }
 
 resource "aws_redshift_snapshot_schedule_association" "default" {
-  cluster_identifier  = aws_redshift_cluster.redshift_cluster.id
+  cluster_identifier  = aws_redshift_cluster.redshift_cluster[count.index].id
   schedule_identifier = aws_redshift_snapshot_schedule.sunday.id
 }
