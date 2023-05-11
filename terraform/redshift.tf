@@ -88,7 +88,7 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
   }
 }
 
-
+/*
 resource "aws_redshift_cluster" "redshift_cluster" {
   count                                 = "${var.environment}" == "dev" || "${var.environment}" == "test" ? 1 : 0
   cluster_identifier                    = "${var.org}-data-platform-${var.environment}"
@@ -106,7 +106,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   vpc_security_group_ids                = ["${aws_security_group.dbt_public_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
-
+*/
 /*
 resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   count                                 = "${var.environment}" == "dev" ? 1 : 0
@@ -128,6 +128,7 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
 }
 */
 
+/*
 resource "aws_redshift_snapshot_schedule" "default" {
   identifier = "${var.org}-data-${var.environment}-at21hours-schedule"
   definitions = [
@@ -139,3 +140,5 @@ resource "aws_redshift_snapshot_schedule_association" "default" {
   cluster_identifier  = aws_redshift_cluster.redshift_cluster[0].id
   schedule_identifier = aws_redshift_snapshot_schedule.default.id
 }
+
+*/
