@@ -1,6 +1,6 @@
 data "aws_caller_identity" "rscontrol" {}
 data "aws_region" "rscontrol" {}
-/*
+
 resource "aws_iam_role" "redshift_full_access_role" {
   name = "${var.org}-${var.project}-${var.environment}-redshift-full-access-role"
 
@@ -101,6 +101,5 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   cluster_subnet_group_name             = "${aws_redshift_subnet_group.redshift_subnet_group.id}"
   vpc_security_group_ids                = ["${aws_security_group.dbt_public_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
+  skip_final_snapshot                   = true
 }
-
-*/
