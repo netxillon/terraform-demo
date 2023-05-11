@@ -78,7 +78,7 @@ resource "aws_iam_role_policy" "redshift_export" {
 				}
          )
 }
-/*
+
 resource "aws_redshift_subnet_group" "redshift_subnet_group" {
   name       = "${var.org}-data-platform-${var.environment}-redshift"
   subnet_ids = "${aws_subnet.private_subnets_redshift.*.id}"
@@ -88,7 +88,7 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
   }
 }
 
-
+/*
 resource "aws_redshift_cluster" "redshift_cluster" {
   cluster_identifier                    = "${var.org}-data-platform-${var.environment}"
   node_type                             = "${var.cluster_node_type}"
@@ -96,7 +96,9 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   database_name                         = "sap_${var.environment}"
   master_username                       = "${var.CLUSTER_MASTER_USERNAME}"
   master_password                       = "${var.CLUSTER_MASTER_PASSWORD}"
-  publicly_accessible			= false
+  publicly_accessible			              = false
+  final_snapshot_identifier             = "${var.org}-data-platform-${var.environment}-final"
+  skip_final_snapshot                   = false
   automated_snapshot_retention_period   = "${var.automated_snapshot_retention_period}"
   cluster_subnet_group_name             = "${aws_redshift_subnet_group.redshift_subnet_group.id}"
   vpc_security_group_ids                = ["${aws_security_group.dbt_public_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
