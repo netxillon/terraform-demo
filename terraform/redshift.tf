@@ -78,7 +78,7 @@ resource "aws_iam_role_policy" "redshift_export" {
 				}
          )
 }
-
+/*
 resource "aws_redshift_subnet_group" "redshift_subnet_group" {
   name       = "${var.org}-data-platform-${var.environment}-redshift"
   subnet_ids = "${aws_subnet.private_subnets_redshift.*.id}"
@@ -102,3 +102,4 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   vpc_security_group_ids                = ["${aws_security_group.dbt_public_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
+*/

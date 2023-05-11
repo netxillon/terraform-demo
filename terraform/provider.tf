@@ -12,7 +12,6 @@ provider "aws" {
   region     = "${var.AWS_DEFAULT_REGION}"
   access_key = "${var.AWS_ACCESS_KEY_ID}"
   secret_key = "${var.AWS_SECRET_ACCESS_KEY}"
-  skip_final_snapshot = true
   default_tags {
     tags = {
       Project     = "${var.project}"
