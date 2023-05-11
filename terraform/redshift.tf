@@ -108,7 +108,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
 
 
 resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
-  count                                 = "${var.environment}" == "prod" ? 1 : 0
+  count                                 = "${var.environment}" == "dev" ? 1 : 0
   cluster_identifier                    = "${var.org}-data-snap-${var.environment}"
   node_type                             = "${var.cluster_node_type}"
   number_of_nodes                       = "${var.cluster_number_of_nodes}"
