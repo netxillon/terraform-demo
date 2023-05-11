@@ -90,6 +90,7 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
 
 
 resource "aws_redshift_cluster" "redshift_cluster" {
+  count                                 = "${var.environment}" == "dev" || "${var.environment}" == "test" ? 1 : 0
   cluster_identifier                    = "${var.org}-data-platform-${var.environment}"
   node_type                             = "${var.cluster_node_type}"
   number_of_nodes                       = "${var.cluster_number_of_nodes}"
