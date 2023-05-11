@@ -98,7 +98,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   master_username                       = "${var.CLUSTER_MASTER_USERNAME}"
   master_password                       = "${var.CLUSTER_MASTER_PASSWORD}"
   publicly_accessible			              = false
-  #final_snapshot_identifier             = "${var.org}-data-platform-${var.environment}-final"
+  final_snapshot_identifier             = "${var.org}-data-platform-${var.environment}-final"
   skip_final_snapshot                   = true
   automated_snapshot_retention_period   = "${var.automated_snapshot_retention_period}"
   cluster_subnet_group_name             = "${aws_redshift_subnet_group.redshift_subnet_group.id}"
@@ -118,7 +118,7 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   publicly_accessible			              = false
   snapshot_identifier                   = "may11snap"
   snapshot_cluster_identifier           = "${var.org}-data-platform-${var.environment}"
-  final_snapshot_identifier             = "${var.org}-data-platform-${var.environment}-final"
+  final_snapshot_identifier             = "${var.org}-data-platform-snap-${var.environment}-final"
   skip_final_snapshot                   = false
   automated_snapshot_retention_period   = "${var.automated_snapshot_retention_period}"
   cluster_subnet_group_name             = "${aws_redshift_subnet_group.redshift_subnet_group.id}"
