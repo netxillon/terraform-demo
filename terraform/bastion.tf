@@ -18,7 +18,7 @@ data "template_cloudinit_config" "config" {
 resource "aws_instance" "bastion" {
    instance_type 		= "t2.micro"
    ami 		 		    = "${var.ami_id}"
-   subnet_id 			= "${aws_subnet.workload_public[0].id}"
+   subnet_id 			= "${aws_subnet.public_subnets_workload[0].id}"
    key_name 			= "${var.bastion_host_key}"
    iam_instance_profile = "${aws_iam_instance_profile.bastion_profile.id}"
    //user_data      = "${data.template_file.userdata.template}"
