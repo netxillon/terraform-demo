@@ -1,3 +1,8 @@
+resource "aws_iam_instance_profile" "bastion_profile" {
+  name = "bastion_ssm-${var.environment}-profile"
+  role = aws_iam_role.bastion_ssm_role.name
+}
+
 data "template_file" "userdata" {
   template = file("${path.module}/scripts/dbt.data")
   }
