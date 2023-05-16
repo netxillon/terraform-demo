@@ -141,3 +141,9 @@ variable "cluster_number_of_nodes" {
 variable "automated_snapshot_retention_period" {
   description = "Redshift Cluster automated snapshot retention period"
 }
+
+variable "allowed_dbt_ips" {
+    description = "The IP of dbt servers"
+    type        = list(string)
+    default     = ["152.45.144.63/32", "54.81.134.249/32", "52.22.161.231/32"]
+}
