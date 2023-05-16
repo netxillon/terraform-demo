@@ -28,9 +28,8 @@ resource "aws_route" "route_public_traffic" {
 }
 
 resource "aws_route" "route_workload_vpc" {
-  for_each = {for idx, route in var.private_subnets_redshift: idx => route}
   route_table_id            = aws_default_route_table.default_route_table_public_vpc.id
-  destination_cidr_block    = each.value
+  destination_cidr_block    = var.private_vpc
   transit_gateway_id        = aws_ec2_transit_gateway.tgw.id
   depends_on                = [aws_default_route_table.default_route_table_public_vpc]
 }

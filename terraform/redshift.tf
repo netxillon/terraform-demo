@@ -103,7 +103,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   skip_final_snapshot                   = false
   automated_snapshot_retention_period   = "${var.automated_snapshot_retention_period}"
   cluster_subnet_group_name             = "${aws_redshift_subnet_group.redshift_subnet_group.id}"
-  vpc_security_group_ids                = ["${aws_security_group.dbt_public_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
+  vpc_security_group_ids                = ["${aws_security_group.dbt_private_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
 
@@ -123,7 +123,7 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   skip_final_snapshot                   = false
   automated_snapshot_retention_period   = "${var.automated_snapshot_retention_period}"
   cluster_subnet_group_name             = "${aws_redshift_subnet_group.redshift_subnet_group.id}"
-  vpc_security_group_ids                = ["${aws_security_group.dbt_public_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
+  vpc_security_group_ids                = ["${aws_security_group.dbt_private_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
 */
