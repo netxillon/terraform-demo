@@ -8,6 +8,12 @@ resource "aws_default_route_table" "default_route_table_public_vpc" {
   }
 }
 
+resource "aws_route_table_association" "public_subnets_tgw" {
+  count           = "${length(var.public_subnets_tgw)}"
+  subnet_id       = "${element(aws_subnet.public_subnets_tgw.*.id, count.index)}"
+  route_table_id  = aws_default_route_table.default_route_table_public_vpc.id
+}
+
 resource "aws_route_table_association" "public_subnets_workload" {
   count           = "${length(var.public_subnets_workload)}"
   subnet_id       = "${element(aws_subnet.public_subnets_workload.*.id, count.index)}"
@@ -36,6 +42,12 @@ resource "aws_default_route_table" "default_route_table_private_vpc" {
   tags = {
     Name = "${var.org}-${var.project}-private"
   }
+}
+
+resource "aws_route_table_association" "private_subnets_tgw" {
+  count           = "${length(var.private_subnets_tgw)}"
+  subnet_id       = "${element(aws_subnet.private_subnets_tgw.*.id, count.index)}"
+  route_table_id  = aws_default_route_table.default_route_table_private_vpc.id
 }
 
 resource "aws_route_table_association" "private_subnets_workload" {

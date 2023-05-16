@@ -49,7 +49,7 @@ resource "aws_subnet" "public_subnets_workload" {
   count             = length(var.public_subnets_workload)
 
   tags = {
-    Name = "${var.org}-${var.project}-public-tgw-dedicated${count.index}"
+    Name = "${var.org}-${var.project}-public-workload${count.index}"
   }
 }
 

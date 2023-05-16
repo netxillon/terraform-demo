@@ -30,7 +30,7 @@ resource "aws_subnet" "private_subnets_tgw" {
   count             = length(var.private_subnets_tgw)
 
   tags = {
-    Name = "${var.org}-${var.project}-public-tgw-dedicated${count.index}"
+    Name = "${var.org}-${var.project}-private-tgw-dedicated${count.index}"
   }
 }
 
@@ -41,7 +41,7 @@ resource "aws_subnet" "private_subnets_redshift" {
   count             = length(var.private_subnets_redshift)
 
   tags = {
-    Name = "${var.org}-${var.project}-${var.environment}-redshift${count.index}"
+    Name = "${var.org}-${var.project}-${var.environment}-private-redshift${count.index}"
   }
 }
 
@@ -52,7 +52,7 @@ resource "aws_subnet" "private_subnets_workload" {
   count             = length(var.private_subnets_workload)
 
   tags = {
-    Name = "${var.org}-${var.project}-${var.environment}-workload${count.index}"
+    Name = "${var.org}-${var.project}-${var.environment}-private-workload${count.index}"
   }
 }
 
