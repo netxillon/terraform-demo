@@ -145,5 +145,5 @@ variable "automated_snapshot_retention_period" {
 variable "allowed_dbt_ips" {
     description = "The IP of dbt servers"
     type        = list(string)
-    default     = ["152.45.144.63/32", "54.81.134.249/32", "52.22.161.231/32"]
+    default     = ["52.45.144.63/32", "54.81.134.249/32", "52.22.161.231/32"]
 }
