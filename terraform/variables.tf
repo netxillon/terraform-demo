@@ -147,3 +147,13 @@ variable "allowed_dbt_ips" {
     type        = list(string)
     default     = ["52.45.144.63/32", "54.81.134.249/32", "52.22.161.231/32"]
 }
+
+variable "bastion_host_key" {
+  description = "SSH Key for the Bastion host in Public subnet"
+  default = "gurmukh_sandbox"
+}
+
+variable "ami_id" {
+  description = "AMI ID for Bastion host in Public subnet"
+  default = "ami-0d147324c76e8210a"
+}
