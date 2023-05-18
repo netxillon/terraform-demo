@@ -9,11 +9,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket1" {
     status = "Enabled"
     id     = "datazone-cleanup" #lion-dev-data-zone
     
-    noncurrent_version_expiration {
-      noncurrent_days           = "${var.expiration_days}"
-      newer_noncurrent_versions = 1
-    }
-    
     noncurrent_version_transition {
       noncurrent_days = "${var.days_to_infreq}"
       storage_class   = "STANDARD_IA"
@@ -102,23 +97,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket2" {
     id     = "datazone2-cleanup" #lion-dev-data-zone
     
     noncurrent_version_expiration {
-      noncurrent_days           = "${var.expiration_days}"
-      newer_noncurrent_versions = 2
-    }
-    
-    noncurrent_version_transition {
-      noncurrent_days = "${var.days_to_infreq}"
-      storage_class   = "STANDARD_IA"
-    }
-
-    noncurrent_version_transition {
-      noncurrent_days = "${var.days_to_glacier}"
-      storage_class   = "GLACIER"
-    }
-
-    noncurrent_version_transition {
-      noncurrent_days = "${var.days_to_deep_achive}"
-      storage_class   = "DEEP_ARCHIVE"
+      noncurrent_days           = "${var.tmp_clean_days}"
+      newer_noncurrent_versions = 0
     }
     
   }
