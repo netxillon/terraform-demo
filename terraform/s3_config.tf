@@ -1,5 +1,5 @@
 
-resource "aws_s3_bucket_lifecycle_configuration" "this" {
+resource "aws_s3_bucket_lifecycle_configuration" "bucket1" {
   bucket = aws_s3_bucket.s3_demo1_bucket.bucket
   
   rule {
@@ -11,7 +11,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     
     noncurrent_version_expiration {
       noncurrent_days           = "${var.expiration_days}"
-      #newer_noncurrent_versions = 2
+      newer_noncurrent_versions = 1
     }
     
     noncurrent_version_transition {
@@ -89,4 +89,37 @@ resource "aws_s3_bucket_intelligent_tiering_configuration" "example-filtered" {
     days        = "${var.days_to_glacier}"
   }
   
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "bucket2" {
+  bucket = aws_s3_bucket.s3_demo2_bucket.bucket
+  
+  rule {
+    filter {
+        prefix = "/"
+    }
+    status = "Enabled"
+    id     = "datazone2-cleanup" #lion-dev-data-zone
+    
+    noncurrent_version_expiration {
+      noncurrent_days           = "${var.expiration_days}"
+      newer_noncurrent_versions = 2
+    }
+    
+    noncurrent_version_transition {
+      noncurrent_days = "${var.days_to_infreq}"
+      storage_class   = "STANDARD_IA"
+    }
+
+    noncurrent_version_transition {
+      noncurrent_days = "${var.days_to_glacier}"
+      storage_class   = "GLACIER"
+    }
+
+    noncurrent_version_transition {
+      noncurrent_days = "${var.days_to_deep_achive}"
+      storage_class   = "DEEP_ARCHIVE"
+    }
+    
+  }
 }
