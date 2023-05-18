@@ -94,7 +94,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket2" {
         prefix = "/"
     }
     status = "Enabled"
-    id     = "datazone2-cleanup" #lion-dev-data-zone
+    id     = "datazone-cleanup" #lion-dev-data-zone
     
     noncurrent_version_expiration {
       noncurrent_days           = "${var.tmp_clean_days}"
