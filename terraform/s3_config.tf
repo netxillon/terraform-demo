@@ -76,14 +76,14 @@ resource "aws_s3_bucket_intelligent_tiering_configuration" "example-filtered" {
   }
 
   tiering {
-    access_tier = "DEEP_ARCHIVE_ACCESS"
-    days        = "${var.days_to_deep_achive}"
-  }
-  tiering {
     access_tier = "ARCHIVE_ACCESS"
     days        = "${var.days_to_glacier}"
   }
   
+   tiering {
+    access_tier = "DEEP_ARCHIVE_ACCESS"
+    days        = "${var.days_to_deep_achive}"
+  }
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "bucket2" {
@@ -98,7 +98,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket2" {
     
     noncurrent_version_expiration {
       noncurrent_days           = "${var.tmp_clean_days}"
-      newer_noncurrent_versions = 0
+      #newer_noncurrent_versions = 0
     }
     
   }
