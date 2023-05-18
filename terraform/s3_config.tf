@@ -102,4 +102,18 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket2" {
     }
     
   }
+
+  rule {
+    filter {
+        prefix = "redshiftTmp/"
+    }
+    status = "Enabled"
+    id     = "redshiftTmp-cleanup" #lion-dev-data-zone
+    
+    noncurrent_version_expiration {
+      noncurrent_days           = "${var.tmp_clean_days}"
+      #newer_noncurrent_versions = 0
+    }
+    
+  }
 }
