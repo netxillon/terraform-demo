@@ -106,7 +106,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   vpc_security_group_ids                = ["${aws_security_group.dbt_private_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
-
+*/
 
 resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   count                                 = "${var.environment}" == "dev" ? 1 : 0
@@ -117,7 +117,7 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   master_username                       = "${var.CLUSTER_MASTER_USERNAME}"
   master_password                       = "${var.CLUSTER_MASTER_PASSWORD}"
   publicly_accessible			              = false
-  snapshot_identifier                   = "demo22may"
+  snapshot_identifier                   = "${var.org}-data-platform-${var.environment}-final-snapshot"
   snapshot_cluster_identifier           = "${var.org}-data-platform-${var.environment}"
   final_snapshot_identifier             = "${var.org}-data-platform-snap-${var.environment}-final-snapshot"
   skip_final_snapshot                   = false
@@ -126,7 +126,7 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   vpc_security_group_ids                = ["${aws_security_group.dbt_private_vpc.id}","${aws_default_security_group.default_private_vpc.id}"]
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
-*/
+
 
 /*
 resource "aws_redshift_snapshot_schedule" "default" {
