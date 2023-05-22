@@ -88,7 +88,7 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
   }
 }
 
-
+/*
 resource "aws_redshift_cluster" "redshift_cluster" {
   count                                 = "${var.environment}" == "dev" || "${var.environment}" == "test" ? 1 : 0
   cluster_identifier                    = "${var.org}-data-platform-${var.environment}"
@@ -107,7 +107,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
 
-/*
+
 resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   count                                 = "${var.environment}" == "dev" ? 1 : 0
   cluster_identifier                    = "${var.org}-data-snap-${var.environment}"
@@ -117,7 +117,7 @@ resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   master_username                       = "${var.CLUSTER_MASTER_USERNAME}"
   master_password                       = "${var.CLUSTER_MASTER_PASSWORD}"
   publicly_accessible			              = false
-  snapshot_identifier                   = "may11snap"
+  snapshot_identifier                   = "demo22may"
   snapshot_cluster_identifier           = "${var.org}-data-platform-${var.environment}"
   final_snapshot_identifier             = "${var.org}-data-platform-snap-${var.environment}-final-snapshot"
   skip_final_snapshot                   = false
