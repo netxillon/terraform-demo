@@ -107,10 +107,11 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   iam_roles                             = [aws_iam_role.redshift_full_access_role.arn, aws_iam_role.redshift_export_role.arn]
 }
 */
+
 /*
 resource "aws_redshift_cluster" "redshift_cluster_snapshot" {
   count                                 = "${var.environment}" == "dev" ? 1 : 0
-  cluster_identifier                    = "${var.org}-data-snap-${var.environment}"
+  cluster_identifier                    = "${var.org}-data-snapshot-${var.environment}"
   node_type                             = "${var.cluster_node_type}"
   number_of_nodes                       = "${var.cluster_number_of_nodes}"
   database_name                         = "sap_${var.environment}"
