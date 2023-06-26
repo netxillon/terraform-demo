@@ -37,4 +37,4 @@ days_to_deep_achive = 365
 # Redshift
 cluster_node_type        = "ra3.xlplus"
 cluster_number_of_nodes  = "1"
-automated_snapshot_retention_period = "3"
+automated_snapshot_retention_period = "2"
