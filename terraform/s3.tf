@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "s3_demo1_bucket" {
-  bucket = "${var.org}-${var.environment}-demo1-zone"
+  bucket = "data-${var.environment}-demo1-zone"
 }
 
 resource "aws_s3_bucket" "s3_demo2_bucket" {
-  bucket = "${var.org}-${var.environment}-demo2-zone"
+  bucket = "data-${var.environment}-demo2-zone"
 }
 
 locals {
